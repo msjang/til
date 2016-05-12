@@ -1,0 +1,10 @@
+; add two ip addresses on one nic
+
+# ifconfig eth1 192.168.0.181
+# ifconfig eth1:0 192.168.44.181
+# ifconfig | grep -A 2 eth1 | grep addr
+eth1      Link encap:Ethernet  HWaddr 00:60:6e:00:01:6a  
+          inet addr:192.168.0.181  Bcast:192.168.0.255  Mask:255.255.255.0
+          inet6 addr: fe80::260:6eff:fe00:16a/64 Scope:Link
+eth1:0    Link encap:Ethernet  HWaddr 00:60:6e:00:01:6a  
+          inet addr:192.168.44.181  Bcast:192.168.44.255  Mask:255.255.255.0

@@ -1,0 +1,18 @@
+; add vlan on a nic
+
+# ifconfig | grep -A2 eth0 | grep addr
+eth0      Link encap:Ethernet  HWaddr b8:ca:3a:cc:01:83  
+          inet addr:192.168.111.27  Bcast:192.168.111.255  Mask:255.255.255.0
+          inet6 addr: fe80::baca:3aff:fecc:183/64 Scope:Link
+
+
+# vconfig add eth0 2
+Added VLAN with VID == 2 to IF -:eth0:-
+
+
+# ifconfig | grep -A2 eth0 | grep addr
+eth0      Link encap:Ethernet  HWaddr b8:ca:3a:cc:01:83  
+          inet addr:192.168.111.27  Bcast:192.168.111.255  Mask:255.255.255.0
+          inet6 addr: fe80::baca:3aff:fecc:183/64 Scope:Link
+eth0.2    Link encap:Ethernet  HWaddr b8:ca:3a:cc:01:83  
+          inet6 addr: fe80::baca:3aff:fecc:183/64 Scope:Link
