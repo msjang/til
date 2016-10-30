@@ -1,0 +1,30 @@
+WiFi WPA 에는 두가지 종류의 암호가 있다.
+
+PSK는 WPA 암호화에서 실질적으로 쓰이는 256bit(32byte, 64hex digit) 암호이다.
+
+PassPhrase는 SSID와 함께 암호화 알고리즘을 통해 mux되어 PSK를 생성하는데 사용된다.
+PassPhrase는 63 printable ASCII character이다.
+ASCII 한글자는 1byte이기 때문에 32글자를 받아야 할 것 같지만, 
+printable한 것들만 모으면 두배로 표현할 수 있다.
+그리고 마지막 character는 null이어야 하기 때문에 1개가 깎여 63글자를 받을 수 있다.
+당연히 NON-ASCII char는 암호로 받을 수 없다.
+
+
+Ex 1) WPA PSK (Raw Key) Generator
+https://www.wireshark.org/tools/wpa-psk.html
+
+Ex 2) WLAN Key Generator
+https://darkvoice.dyndns.org/wlankeygen/
+0-9, A-Z, a-z + extended special characters (ASCII 33-126, 161-254) 
+
+Ex 3) hostapd.conf
+https://w1.fi/cgit/hostap/plain/hostapd/hostapd.conf
+
+# WPA pre-shared keys for WPA-PSK. This can be either entered as a 256-bit
+# secret in hex format (64 hex digits), wpa_psk, or as an ASCII passphrase
+# (8..63 characters) that will be converted to PSK. This conversion uses SSID
+# so the PSK changes when ASCII passphrase is used and the SSID is changed.
+# wpa_psk (dot11RSNAConfigPSKValue)
+# wpa_passphrase (dot11RSNAConfigPSKPassPhrase)
+#wpa_psk=0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+#wpa_passphrase=secret passphrase

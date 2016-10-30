@@ -16,6 +16,14 @@ wlan0     IEEE 802.11abgn  Mode:Monitor  Tx-Power=15 dBm
 # wireshark &
 ```
 
+```
+ifconfig wlan0 down
+iwconfig wlan0 mode monitor
+ifconfig wlan0 up
+iwconfig wlan0
+wireshark &
+```
+
 check addresses to observe
 ```
 # ifconfig wlan-l-0 | grep HWaddr

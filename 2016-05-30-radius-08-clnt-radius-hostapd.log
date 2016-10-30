@@ -1,0 +1,56 @@
+root@intel_ce_linux:~# cat /nvram/wlan-l-0-wpa-enterprise.conf 
+# COMMON
+logger_syslog=-1
+logger_syslog_level=2
+logger_stdout=-1
+logger_stdout_level=2
+ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0
+dump_file=/tmp/hostapd.dump
+eapol_key_index_workaround=0
+
+# INTERFACE
+interface=wlan-l-0
+ssid=NNN_2G_SSID_TEST_WPA_ENTERPRISE
+
+# WPA
+own_ip_addr=127.0.0.1
+ieee8021x=1
+auth_server_addr=192.168.0.76
+auth_server_port=1812
+auth_server_shared_secret=S3cr3tK3y
+auth_algs=3
+wpa_key_mgmt=WPA-EAP
+wpa=2
+wpa_pairwise=CCMP
+rsn_pairwise=CCMP
+
+
+
+
+root@intel_ce_linux:~# hostapd -P /tmp/wlan-l-0.pid -B /nvram/wlan-l-0-wpa-enterprise.conf 
+
+Line 8: DEPRECATED: 'dump_file' configuration variable is not used anymore
+ ieee80211_ioctl_siwmode: imr.ifm_active=393856, new mode=3, valid=1 max/wlan-l-0
+Warning: failed reading log message, error: Resource temporarily unavailable, nFd: 6
+ DEVICE IS DOWN ifname=wlan-l-0
+wlan-l-0: Could not connect to kernel driver DEVICE IS DOWN ifname=wlan-l-0
+
+Using interface wlan-l-0 with hwaddr 00:30:0d:90:61:10 and ssid "NNN_2G_SSID_TEST_WPA_ENTERPRISE"
+wlan-l-0: RADIUS Authentication server 192.168.0.76:1812
+wlan_mlme_stop_bss: do_wme_init is set to 0
+ieee80211_wme_initparams : iv_rescan  is set
+mlme_create_infra_bss:453 numvaps = 1 do_wme_init is set
+ieee80211_beacon_init:(360) Restore wme params 
+br2: port 2(wlan-l-0) entered forwarding state
+br2: port 2(wlan-l-0) entered forwarding state
+8021q: adding VLAN 0 to HW filter on device wlan-l-0
+wlan-l-0: interface state UNINITIALIZED->ENABLED
+root@intel_ce_linux:/nvram# br2: port 2(wlan-l-0) entered forwarding state
+Warning: failed reading log message, error: Resource temporarily unavailable, nFd: 6
+
+
+; dbg message due to jammer
+vap-0(wlan-l-0): [50:55:27:b8:c3:12]ieee80211_recv_asreq: deny assoc request, sta 50:55:27:b8:c3:12 not authenticated
+vap-0(wlan-l-0): [50:55:27:b8:c3:12]ieee80211_recv_asreq: deny assoc request, sta 50:55:27:b8:c3:12 not authenticated
+vap-0(wlan-l-0): [50:55:27:b8:c3:12]ieee80211_recv_asreq: deny assoc request, sta 50:55:27:b8:c3:12 not authenticated
